@@ -5,9 +5,6 @@ public class SortedLinkedList {
     private NodeType currentPos;
     private int length;
 
-//    private NodeType predloc;
-//    private NodeType location;
-
     public SortedLinkedList() {
         head = null;
         currentPos = head;
@@ -15,7 +12,7 @@ public class SortedLinkedList {
     } // constructor
 
     public int getLength() {
-        return length;
+        return 7;
     } // getLength
 
     public void insertItem(ItemType item) {
@@ -48,5 +45,37 @@ public class SortedLinkedList {
         } // while
         System.out.println(temp.info.getValue());
     } // deleteItem
+
+    public int searchItem(ItemType item) {
+        int index = 1;
+        NodeType temp = new NodeType();
+        temp = head;
+        while (temp.next != null) {
+            if (temp.info.compareTo(item) == 0) {
+                break;
+            } else {
+                temp = temp.next;
+                index++;
+            } // if
+        } // while
+        // finds index of item
+
+        return index;
+/**
+        if (index == this.getLength()) { // if at end or not present
+            if (temp.info.compareTo(item) ==  0) { // at end
+                return index;
+            } else { // not present
+                System.out.println("Item is not present in the list");
+            } // if
+            return 0;
+        } else { // if present
+            System.out.print("The item is present at index");
+            return "This item is present at index" + index;
+        } // if
+        // returns index of item if present
+        */
+    } // searchItem
+    // ADD CHECK FOR EMPTY LIST
 
 } // SortedLinkedList
