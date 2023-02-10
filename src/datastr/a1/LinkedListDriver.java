@@ -1,4 +1,4 @@
-package datastru.a1;
+package datastr.a1;
 
 import java.io.File;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package datastru.a1;
+package datastr.a1;
 
 public class SortedLinkedList {
     private NodeType head;
