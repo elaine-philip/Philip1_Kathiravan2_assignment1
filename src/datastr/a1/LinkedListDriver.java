@@ -16,30 +16,61 @@ public class LinkedListDriver {
                 item.initialize(scan.nextInt());
                 list.insertItem(item);
             } // while
-/**
-            ItemType item2 = new ItemType();
-            item2.initialize(2);
-            list.insertItem(item2);
-            // add to begining
 
-            ItemType item9 = new ItemType();
-            item9.initialize(9);
-            list.insertItem(item9);
-            // add to middle
+            String command = "";
 
-            ItemType item30 = new ItemType();
-            item30.initialize(30);
-            list.insertItem(item30);
-            // add to end
-            */
-            // insert tests
+            while (!command.equals("q")) {
+                System.out.print("Enter a command: ");
+                Scanner scanCom  = new Scanner(System.in);
+                command = scanCom.next();
+                // user input
 
-            list.deleteItem(new ItemType());
-            // prints list
+                if (command.equals("p")) {
+                    System.out.print("The list is: ");
+                    list.print();
+                    // prints list
+                } else if (command.equals("l")) {
+                    System.out.print("The length of the list is ");
+                    System.out.println(list.getLength());
+                } else if (command.equals("i")) {
+                    System.out.print("Enter a number to insert: ");
+                    scanCom = new Scanner(System.in);
+                    ItemType insertVal = new ItemType();
+                    insertVal.initialize(scanCom.nextInt());
+                    // asks and stores insert value
 
-            ItemType item3 = new ItemType();
-            item3.initialize(3);
-            list.searchItem(item3);
+                    System.out.print("Original list : ");
+                    list.print();
+                    // prints original list
+
+                    list.insertItem(insertVal); // inserts insert Val
+                    System.out.print("New list : ");
+                    list.print();
+                    // prints original list
+                } else if (command.equals("s")) {
+                    System.out.print("Enter a number to search: ");
+                    scanCom = new Scanner(System.in);
+                    ItemType searchVal = new ItemType();
+                    searchVal.initialize(scanCom.nextInt());
+                    // asks and stores search value
+
+                    if (list.searchItem(searchVal) == -1) {
+                        System.out.println("Item is not present in the list");
+                    } else {
+                        System.out.println("The item is present at index "
+                        + list.searchItem(searchVal));
+                    } // if
+                    // displays print statements
+
+                } else {
+                    System.out.println("Invalid command, try again!");
+                } // if
+
+            } // while
+            // loop to prompt user
+
+
+
 
         } catch (FileNotFoundException fnfe) {
             System.out.println("File Not Found");

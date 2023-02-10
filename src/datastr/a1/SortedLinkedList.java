@@ -5,6 +5,7 @@ public class SortedLinkedList {
     private NodeType currentPos;
     private int length;
 
+
     public SortedLinkedList() {
         head = null;
         currentPos = head;
@@ -12,7 +13,20 @@ public class SortedLinkedList {
     } // constructor
 
     public int getLength() {
-        return 7;
+
+        int length = 1;
+        NodeType tempCount = new NodeType();
+        tempCount = head;
+        // temp node to search through list
+
+        while (tempCount.next != null) {
+            tempCount = tempCount.next;
+            length++;
+        } // while
+        // finds length
+
+        return length;
+
     } // getLength
 
     public void insertItem(ItemType item) {
@@ -37,45 +51,58 @@ public class SortedLinkedList {
     // ADD CHECK FOR DUP
 
     public void deleteItem(ItemType item){
-        NodeType temp = new NodeType();
-        temp = head;
-        while (temp.next != null) {
-            System.out.println(temp.info.getValue());
-            temp = temp.next;
-        } // while
-        System.out.println(temp.info.getValue());
+
     } // deleteItem
 
     public int searchItem(ItemType item) {
-        int index = 1;
+        if (this.head.next == null) { // empty check
+            return 0;
+        } else {
+            int index = 1;
+            NodeType temp = new NodeType();
+            temp = head;
+            while (temp.next != null) {
+                if (temp.info.compareTo(item) == 0) {
+                    break;
+                } else {
+                    temp = temp.next;
+                    index++;
+                } // if
+            } // while
+            // finds index of item
+
+            if (index == this.getLength()) { // if at end or not present
+                if (temp.info.compareTo(item) ==  0) { // at end
+                    return index;
+                } else { // not present
+                    return -1;
+                } // if
+            } else { // if present
+                return index;
+            } // if
+        } // if
+        // returns index of item if present
+
+    } // searchItem
+    // ADD CHECK FOR EMPTY LIST
+
+
+
+    public ItemType getNextItem() {
+        return currentPos.next.info;
+    } // getNextItem
+
+
+
+    public void print() {
         NodeType temp = new NodeType();
         temp = head;
         while (temp.next != null) {
-            if (temp.info.compareTo(item) == 0) {
-                break;
-            } else {
-                temp = temp.next;
-                index++;
-            } // if
+            System.out.print(temp.info.getValue() + " ");
+            temp = temp.next;
         } // while
-        // finds index of item
+        System.out.println(temp.info.getValue() + " ");
+    } // print
 
-        return index;
-/**
-        if (index == this.getLength()) { // if at end or not present
-            if (temp.info.compareTo(item) ==  0) { // at end
-                return index;
-            } else { // not present
-                System.out.println("Item is not present in the list");
-            } // if
-            return 0;
-        } else { // if present
-            System.out.print("The item is present at index");
-            return "This item is present at index" + index;
-        } // if
-        // returns index of item if present
-        */
-    } // searchItem
-    // ADD CHECK FOR EMPTY LIST
 
 } // SortedLinkedList
