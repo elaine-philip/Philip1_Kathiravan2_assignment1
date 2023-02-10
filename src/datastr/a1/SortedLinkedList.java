@@ -5,8 +5,8 @@ public class SortedLinkedList {
     private NodeType currentPos;
     private int length;
 
-    private NodeType predloc;
-    private NodeType location;
+//    private NodeType predloc;
+//    private NodeType location;
 
     public SortedLinkedList() {
         head = null;
@@ -22,27 +22,31 @@ public class SortedLinkedList {
         NodeType node = new NodeType();
         node.info = item;
 
-        if (head == null) {
-            node.info = item;
-//            node.next = head;
-            predloc = head;
-            location = head;
+        if (head == null || item.compareTo(head.info) == -1) { // special case
+            node.next = head;
             head = node;
-        }  else {
-            predloc = null;
-            location = head;
-            while (item.compareTo(location.info) >= 0) {
-                predloc = location;
-                location = location.next;
+        } else { // general case
+            currentPos = head;
+            while (currentPos.next != null && (node.info.compareTo(currentPos.next.info) == 1)) {
+                currentPos = currentPos.next;
             } // while
-            predloc.next = node;
-            node.next = location;
-        } // if
+            // finds where to insert new node
 
+            node.next = currentPos.next;
+            currentPos.next = node;
+            // inserts the new node
+        } // if
     } // insertItem
+    // ADD CHECK FOR DUP
 
     public void deleteItem(ItemType item){
-
+        NodeType temp = new NodeType();
+        temp = head;
+        while (temp.next != null) {
+            System.out.println(temp.info.getValue());
+            temp = temp.next;
+        } // while
+        System.out.println(temp.info.getValue());
     } // deleteItem
 
 } // SortedLinkedList
