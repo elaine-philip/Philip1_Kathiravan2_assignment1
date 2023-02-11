@@ -18,9 +18,10 @@ public class LinkedListDriver {
             } // while
 
             String command = "";
+            System.out.print("Enter a command: ");
 
             while (!command.equals("q")) {
-                System.out.print("Enter a command: ");
+                boolean invalid = false;
                 Scanner scanCom  = new Scanner(System.in);
                 command = scanCom.next();
                 // user input
@@ -61,10 +62,25 @@ public class LinkedListDriver {
                         + list.searchItem(searchVal));
                     } // if
                     // displays print statements
-
+                } else if (command.equals("n")) {
+                    list.getNextItem();
+                } else if (command.equals("r")) {
+                    list.resetList();
+                } else if (command.equals("q")) {
+                    System.out.println("Exiting the program...");
+                    exit();
                 } else {
-                    System.out.println("Invalid command, try again!");
+                    invalid = true;
+
                 } // if
+                // all command cases
+
+                if (invalid) {
+                    System.out.print("Invalid command, try again: ");
+                } else if (){
+                    System.out.print("Enter a command: ");
+                }
+                //prompting user
 
             } // while
             // loop to prompt user

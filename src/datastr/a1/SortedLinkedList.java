@@ -3,13 +3,11 @@ package datastr.a1;
 public class SortedLinkedList {
     private NodeType head;
     private NodeType currentPos;
-    private int length;
 
 
     public SortedLinkedList() {
         head = null;
         currentPos = head;
-        length = 0;
     } // constructor
 
     public int getLength() {
@@ -24,9 +22,7 @@ public class SortedLinkedList {
             length++;
         } // while
         // finds length
-
         return length;
-
     } // getLength
 
     public void insertItem(ItemType item) {
@@ -47,6 +43,7 @@ public class SortedLinkedList {
             currentPos.next = node;
             // inserts the new node
         } // if
+        currentPos = head;
     } // insertItem
     // ADD CHECK FOR DUP
 
@@ -89,10 +86,26 @@ public class SortedLinkedList {
 
 
     public ItemType getNextItem() {
-        return currentPos.next.info;
+        ItemType gni = new ItemType();
+        if (head == null) { // empty check
+            System.out.println("The list is empty");
+            return null;
+        } else {
+            if (currentPos == null) {
+                currentPos = head;
+            } // if
+            gni.initialize(currentPos.info.getValue());
+            currentPos = currentPos.next;
+            System.out.println(gni.getValue());
+        } // if
+        return gni;
     } // getNextItem
+    //NEED TO TEST EMPTY CHECK AFTER DELETE IS MADE
 
-
+    public void resetList() {
+        System.out.println("Iterator is reset");
+        currentPos = null;
+    } // resetList
 
     public void print() {
         NodeType temp = new NodeType();
@@ -102,6 +115,7 @@ public class SortedLinkedList {
             temp = temp.next;
         } // while
         System.out.println(temp.info.getValue() + " ");
+        currentPos = head;
     } // print
 
 
