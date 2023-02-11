@@ -55,6 +55,8 @@ public class LinkedListDriver {
                     searchVal.initialize(scanCom.nextInt());
                     // asks and stores search value
 
+                    System.out.print("Original list : ");
+                    list.print();
                     if (list.searchItem(searchVal) == -1) {
                         System.out.println("Item is not present in the list");
                     } else {
@@ -68,16 +70,16 @@ public class LinkedListDriver {
                     list.resetList();
                 } else if (command.equals("q")) {
                     System.out.println("Exiting the program...");
-                    exit();
+//                    exit();
                 } else {
                     invalid = true;
-
+                    System.exit(0);
                 } // if
                 // all command cases
 
                 if (invalid) {
                     System.out.print("Invalid command, try again: ");
-                } else if (){
+                } else if (!command.equals("q")){
                     System.out.print("Enter a command: ");
                 }
                 //prompting user

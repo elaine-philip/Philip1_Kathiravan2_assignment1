@@ -29,7 +29,9 @@ public class SortedLinkedList {
         NodeType node = new NodeType();
         node.info = item;
 
-        if (head == null || item.compareTo(head.info) == -1) { // special case
+        if (head != null && searchItem(item) > 0) {
+            System.out.println("Item already exists");
+        } else if (head == null || item.compareTo(head.info) == -1) { // special case
             node.next = head;
             head = node;
         } else { // general case
@@ -45,7 +47,7 @@ public class SortedLinkedList {
         } // if
         currentPos = head;
     } // insertItem
-    // ADD CHECK FOR DUP
+    // CHECK FOR EMPTY LIST AFTER DELETE IS MADE
 
     public void deleteItem(ItemType item){
 
@@ -101,6 +103,7 @@ public class SortedLinkedList {
         return gni;
     } // getNextItem
     //NEED TO TEST EMPTY CHECK AFTER DELETE IS MADE
+    //SHOULD IT RESTART EVERY TIME CALLED?
 
     public void resetList() {
         System.out.println("Iterator is reset");
