@@ -11,10 +11,12 @@ public class SortedLinkedList {
     } // constructor
 
     public int getLength() {
-
         int length = 1;
-        NodeType tempCount = new NodeType();
-        tempCount = head;
+        if (head == null) {
+            length = 0;
+        } else {
+            NodeType tempCount = new NodeType();
+            tempCount = head;
         // temp node to search through list
 
         while (tempCount.next != null) {
@@ -22,6 +24,7 @@ public class SortedLinkedList {
             length++;
         } // while
         // finds length
+        }
         return length;
     } // getLength
 
@@ -49,8 +52,6 @@ public class SortedLinkedList {
     } // insertItem
 
     public void deleteItem(ItemType item){
-        NodeType node = new NodeType();
-        node.info = item;
         currentPos = head;
         if (head == null) { // empty check
             System.out.println("You cannot delete from an empty list");
@@ -76,7 +77,7 @@ public class SortedLinkedList {
     } // deleteItem
 
     public int searchItem(ItemType item) {
-        if (this.head.next == null) { // empty check
+        if (this.head == null) { // empty check
             return 0;
         } else {
             int index = 1;
@@ -125,12 +126,30 @@ public class SortedLinkedList {
         return gni;
     } // getNextItem
     //NEED TO TEST EMPTY CHECK AFTER DELETE IS MADE
-    //SHOULD IT RESTART EVERY TIME CALLED?
 
     public void resetList() {
         System.out.println("Iterator is reset");
         currentPos = null;
     } // resetList
+
+
+    public void deleteAlt() {
+
+        if (head == null) { // empty check
+            System.out.println("The list is empty");
+        } else if (head.next == null) { // one item check
+            System.out.print("");
+        } else { // general case
+            currentPos = head;
+            while (currentPos.next != null) {
+                currentPos.next = currentPos.next.next;
+                if (currentPos.next != null) { // if last element deleted
+                    currentPos = currentPos.next;
+                } // if
+            } // while
+        } // if
+    } // deleteAlt
+
 
     public void print() {
         NodeType temp = new NodeType();

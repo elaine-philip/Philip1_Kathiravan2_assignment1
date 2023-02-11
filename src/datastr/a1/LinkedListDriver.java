@@ -57,7 +57,9 @@ public class LinkedListDriver {
 
                     System.out.print("Original list : ");
                     list.print();
-                    if (list.searchItem(searchVal) == -1) {
+                    if (list.searchItem(searchVal) == 0) {
+                        System.out.println("The list is empty");
+                    } else if (list.searchItem(searchVal) == -1) {
                         System.out.println("Item is not present in the list");
                     } else {
                         System.out.println("The item is present at index "
@@ -83,6 +85,15 @@ public class LinkedListDriver {
                     list.getNextItem();
                 } else if (command.equals("r")) {
                     list.resetList();
+                } else if (command.equals("a")) {
+                    System.out.print("Original list : ");
+                    list.print();
+                    // prints original list
+
+                    list.deleteAlt();
+                    System.out.print("New list : ");
+                    list.print();
+                    // prints new list
                 } else if (command.equals("q")) {
                     System.out.println("Exiting the program...");
                     System.exit(0);
@@ -90,20 +101,15 @@ public class LinkedListDriver {
                     invalid = true;
                 } // if
                 // all command cases
-
                 if (invalid) {
                     System.out.print("Invalid command, try again: ");
                 } else if (!command.equals("q")){
                     System.out.print("Enter a command: ");
-                }
+                } // if
                 //prompting user
 
             } // while
             // loop to prompt user
-
-
-
-
         } catch (FileNotFoundException fnfe) {
             System.out.println("File Not Found");
         } // try
