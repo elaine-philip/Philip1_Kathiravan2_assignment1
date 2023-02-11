@@ -47,7 +47,7 @@ public class LinkedListDriver {
                     list.insertItem(insertVal); // inserts insert Val
                     System.out.print("New list : ");
                     list.print();
-                    // prints original list
+                    // prints new list
                 } else if (command.equals("s")) {
                     System.out.print("Enter a number to search: ");
                     scanCom = new Scanner(System.in);
@@ -64,16 +64,30 @@ public class LinkedListDriver {
                         + list.searchItem(searchVal));
                     } // if
                     // displays print statements
+                } else if (command.equals("d")) {
+                    System.out.print("Enter a number to delete: ");
+                    scanCom = new Scanner(System.in);
+                    ItemType deleteVal = new ItemType();
+                    deleteVal.initialize(scanCom.nextInt());
+                    // asks and stores search value
+
+                    System.out.print("Original list : ");
+                    list.print();
+                    // prints original list
+
+                    list.deleteItem(deleteVal); // inserts insert Val
+                    System.out.print("New list : ");
+                    list.print();
+                    // prints new list
                 } else if (command.equals("n")) {
                     list.getNextItem();
                 } else if (command.equals("r")) {
                     list.resetList();
                 } else if (command.equals("q")) {
                     System.out.println("Exiting the program...");
-//                    exit();
+                    System.exit(0);
                 } else {
                     invalid = true;
-                    System.exit(0);
                 } // if
                 // all command cases
 

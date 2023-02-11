@@ -47,10 +47,32 @@ public class SortedLinkedList {
         } // if
         currentPos = head;
     } // insertItem
-    // CHECK FOR EMPTY LIST AFTER DELETE IS MADE
 
     public void deleteItem(ItemType item){
-
+        NodeType node = new NodeType();
+        node.info = item;
+        currentPos = head;
+        if (head == null) { // empty check
+            System.out.println("You cannot delete from an empty list");
+        } else if (this.getLength() == 1) { // one item check
+            if (currentPos.info.compareTo(item) == 0) {
+                head = null;
+            } // if
+            // makes list empty
+        } else if (this.searchItem(item) <= 0) {
+            System.out.println("The item is not present in the list");
+        } else if (currentPos.info.compareTo(item) == 0) { // first item check
+            head = currentPos.next;
+        } else { // general case
+            while (currentPos.next != null) {
+                if (currentPos.next.info.compareTo(item) == 0) {
+                    currentPos.next = currentPos.next.next;
+                    break;
+                } else {
+                    currentPos = currentPos.next;
+                } // if
+            } // while
+        } // if
     } // deleteItem
 
     public int searchItem(ItemType item) {
@@ -113,11 +135,16 @@ public class SortedLinkedList {
     public void print() {
         NodeType temp = new NodeType();
         temp = head;
-        while (temp.next != null) {
-            System.out.print(temp.info.getValue() + " ");
-            temp = temp.next;
-        } // while
-        System.out.println(temp.info.getValue() + " ");
+
+        if (head == null) { // empty
+            System.out.println("");
+        } else {
+            while (temp.next != null) {
+                System.out.print(temp.info.getValue() + " ");
+                temp = temp.next;
+            } // while
+            System.out.println(temp.info.getValue() + " ");
+        } // if
         currentPos = head;
     } // print
 
