@@ -10,6 +10,10 @@ public class SortedLinkedList {
         currentPos = head;
     } // constructor
 
+    public NodeType getHead() {
+        return head;
+    } //getHead
+
     public int getLength() {
         int length = 1;
         if (head == null) {
@@ -132,6 +136,52 @@ public class SortedLinkedList {
         currentPos = null;
     } // resetList
 
+    public static NodeType mergeList(NodeType head1, NodeType head2) {
+        // if head1 is null, that list is empty, so return the other and vice versa
+        if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
+        }
+        // choose the first head based on which head is the smallest
+        NodeType mergedHead = null;
+        if (head1.info.compareTo(head2.info) == -1) {
+            mergedHead = head1;
+            head1 = head1.next;
+        } else {
+            mergedHead = head2;
+            head2 = head2.next;
+        }
+
+        NodeType mergedTail = mergedHead;
+
+        // if head1 is less than head2, then set temp to head1
+        while (head1 != null && head2 != null) {
+            NodeType temp = null;
+            if (head1.info.compareTo(head2.info) == -1) {
+                temp = head1;
+                head1 = head1.next;
+            } else {
+                temp = head2;
+                head2 = head2.next;
+            }
+
+            // set mergedTail to temp
+            mergedTail.next = temp;
+            mergedTail = temp;
+        }
+
+        // Move to next node of comparison
+        if (head1 != null) {
+            mergedTail.next = head1;
+        } else if (head2 != null) {
+            mergedTail.next = head2;
+        }
+        return mergedHead;
+    } // mergeList
+
+
+
 
     public void deleteAlt() {
 
@@ -150,6 +200,50 @@ public class SortedLinkedList {
         } // if
     } // deleteAlt
 
+    public String intersectionList(SortedLinkedList other) {
+        StringBuffer buffer = new StringBuffer();
+        NodeType current = head;
+        if (head == null) {
+            return "Empty List";
+        }
+        while (current != null) {
+            ItemType item = current.info;
+
+            if (other.searchItem(item) >= 0) {
+                buffer.append(item.getValue()).append(" ");
+            }
+            current = current.next;
+        }
+        return buffer.toString();
+} // intersectionList
+
+
+    public static NodeType sortedMergeNoDupe(NodeType head1, NodeType head2) {
+        // Merge list
+        NodeType head = mergeList(head1, head2);
+        // remove duplicates
+        removeDuplicates(head);
+        return head;
+    } // sortedMergeNoDupe
+
+    static void removeDuplicates(NodeType head) {
+        // pointer to traverse
+        NodeType curr = head;
+        // do nothing if list is empty
+        if (curr == null) {
+            return;
+        }
+
+        while (curr.next != null) {
+            // if current node is equal to next, skip over next node, else advance
+            if (curr.info.compareTo(curr.next.info) == 0) {
+                curr.next = curr.next.next;
+            } else {
+                curr = curr.next;
+            }
+        }
+
+    } // removeDuplicates
 
     public void print() {
         NodeType temp = new NodeType();

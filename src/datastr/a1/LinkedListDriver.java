@@ -94,6 +94,64 @@ public class LinkedListDriver {
                     System.out.print("New list : ");
                     list.print();
                     // prints new list
+                } else if (command.equals("m")) {
+                    //Merge a list to the original list
+                    System.out.print("Enter the length of the new list: ");
+                    scanCom = new Scanner(System.in);
+                    int num = scanCom.nextInt();
+                    int count = 0;
+                    int [] values= new int[num];
+                    System.out.print("Enter the numbers ");
+                    while(scanCom.hasNext()) {
+                        values[count] = scanCom.nextInt();
+                        count++;
+                        if (count == num) break;
+                    }
+                    SortedLinkedList list2 = new SortedLinkedList();
+//                    System.out.println(num);
+                    for (int i = 0; i < values.length; i++) {
+                        ItemType item = new ItemType();
+                        item.initialize(values[i]);
+                        list2.insertItem(item);
+
+                    }
+                    // DEBUG
+//                    list2.print();
+
+
+                    NodeType head = list.getHead();
+                    System.out.print("list 1: ");
+                    list.print();
+                    System.out.print("list 2: ");
+                    list2.print();
+                    head = SortedLinkedList.sortedMergeNoDupe(list.getHead(), list2.getHead());
+                    System.out.print("Merged list: ");
+                    list.print();
+
+                } else if (command.equals("t")) {
+                    System.out.print("Enter the length of the new list: ");
+                    scanCom = new Scanner(System.in);
+                    int num = scanCom.nextInt();
+                    int count = 0;
+                    int [] values= new int[num];
+                    System.out.print("Enter the numbers: ");
+                    while(scanCom.hasNext()) {
+                        values[count] = scanCom.nextInt();
+                        count++;
+                        if (count == num) break;
+                    }
+                    SortedLinkedList list2 = new SortedLinkedList();
+                    for (int i = 0; i < values.length; i++) {
+                        ItemType item = new ItemType();
+                        item.initialize(values[i]);
+                        list2.insertItem(item);
+                    }
+                    System.out.print("list 1: ");
+                    list.print();
+                    System.out.print("list 2: ");
+                    list2.print();
+                    System.out.println("Intersection of lists: " + list.intersectionList(list2));
+
                 } else if (command.equals("q")) {
                     System.out.println("Exiting the program...");
                     System.exit(0);
