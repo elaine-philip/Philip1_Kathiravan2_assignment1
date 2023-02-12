@@ -1,3 +1,4 @@
+
 package datastr.a1;
 
 public class ItemType {
